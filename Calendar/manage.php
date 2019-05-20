@@ -86,23 +86,26 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
+		<script src="../js/jquery.js"></script>
 		<?php
 			$ua = $_SERVER["HTTP_USER_AGENT"];
 			if(strpos($ua,"iPhone"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";                                                               
 			}
 			else if(strpos($ua,"Android"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
 			}
 			else if(strpos($ua,"Windows"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
 			}
 			else
 			{
@@ -172,19 +175,19 @@
 		<?php
 			if(strpos($ua,"iPhone"))
 			{
-				include("./CntHeader/iphone_header.php");
+				include("../header/Clndr/iphone_header.php");
 			}
 			else if(strpos($ua,"Android"))
 			{
-				include("./CntHeader/android_header.php");
+				include("../header/Clndr/android_header.php");
 			}
 			else if(strpos($ua,"Windows"))
 			{
-				include("./CntHeader/win_header.php");
+				include("../header/Clndr/win_header.php");
 			}
 			else
 			{
-				include("./CntHeader/header.php");
+				include("../header/Clndr/header.php");
 			}
 		?>
 		</header>
@@ -201,6 +204,14 @@
 			<span class="mail_position" style="font-size:12px;">【<span style="color:#33ff99;font-size:14px;">■</span>:メイン <span style="color:#ffcc99;font-size:14px;">■</span>:サブ】-></span>
 			<span class="textposition" style="font-size:11px;text-decoration: underline;"><a href="./mail_regist.php">申請メール対応登録</a></span>
 		</div>
+<?php
+	if(strpos($ua,"iPhone") || strpos($ua,"Android"))
+	{
+
+	}
+	else
+	{
+?>
 		<table>
 			<?php
 				/*	月と名前行	*/
@@ -402,6 +413,9 @@
 				}
 			?>			
 		</table>
+<?php
+	}
+?>
 	</body>
 </html>
 <?php

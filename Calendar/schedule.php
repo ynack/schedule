@@ -76,8 +76,6 @@
 		{
 			$name = $row["name"];
 		}
-
-		include("./php/mail_work.php");
 ?>
 <!doctype html>
 <html lang="ja">
@@ -95,7 +93,7 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/font/style.css\" />";
 			}
 			else if(strpos($ua,"Android"))
 			{
@@ -112,7 +110,7 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
 			}
-		?>	
+		?>
 		<style>
 			table
 			{
@@ -124,34 +122,12 @@
 				margin-left: auto;
 			}
 
-			tr
-			{
-				border: solid 1px;
-			}
-
 			td.head
 			{
 				border: solid 1px;
 				text-align: right;
 				vertical-align: top;
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
-			}
-
-			a.days
-			{
-				display: block;
-				width: 100%;
-				height:100%;
-
-				text-decoration: none;
-			}
-
+			}		
 		</style>
 	</head>
 	<body>
@@ -192,9 +168,9 @@
 	{
 ?>
 		<table>
-		<thead>
-		</thead>
-		<tbody>
+			<thead>
+			</thead>
+			<tbody>
 				<?php
 					for($i = 1; $i <= $last_day; $i++)
 					{
@@ -356,10 +332,10 @@
 						echo "</tr>\n";
 					}
 				?>
-		</tbody>
-		<tfoot>
-		</tfoot>
-	</table>
+			</tbody>
+			<tfoot>
+			</tfoot>
+		</table>
 <?php
 	}
 	else

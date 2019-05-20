@@ -1,0 +1,13 @@
+document.write("<option value=''></option>");
+document.write("<option value='1'>1</option>");
+document.write("<option value='2'>2</option>");
+document.write("<option value='3'>3</option>");
+document.write("<option value='4'>4</option>");
+document.write("<option value='5'>5</option>");
+document.write("<option value='6'>6</option>");
+document.write("<option value='7'>7</option>");
+document.write("<option value='8'>8</option>");
+document.write("<option value='9'>9</option>");
+document.write("<option value='10'>10</option>");
+document.write("<option value='11'>11</option>");
+document.write("<option value='12'>12</option>");

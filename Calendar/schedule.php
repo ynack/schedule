@@ -20,6 +20,8 @@
 			$display_date = $get_display_date;
 		}
 
+		$week_jp = ['（日）','（月）','（火）','（水）','（木）','（金）','（土）'];	//	曜日対応（数字から日本語にする）
+
 		$yn = explode("-", $display_date);
 		$year = $yn[0];
 		$month = $yn[1];
@@ -83,11 +85,34 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
-
-		<link rel="stylesheet" href="../css/Clndr/header.css" />
-		<link rel="stylesheet" href="../css/Clndr/main.css" />
-		<link rel="stylesheet" href="../css/font/style.css" />
+		<script src="../js/jquery.js"></script>
+		<?php
+			$ua = $_SERVER["HTTP_USER_AGENT"];
+			if(strpos($ua,"iPhone"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
+			}
+			else if(strpos($ua,"Android"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+			}
+			else
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+			}
+		?>	
 		<style>
 			table
 			{
@@ -104,7 +129,7 @@
 				border: solid 1px;
 			}
 
-			td
+			td.head
 			{
 				border: solid 1px;
 				text-align: right;
@@ -131,11 +156,26 @@
 	</head>
 	<body>
 		<header>
-			<?php		
-				include("./CntHeader/header.php");
-			?>
+		<?php
+			if(strpos($ua,"iPhone"))
+			{
+				include("../header/Clndr/iphone_header.php");
+			}
+			else if(strpos($ua,"Android"))
+			{
+				include("../header/Clndr/android_header.php");
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				include("../header/Clndr/win_header.php");
+			}
+			else
+			{
+				include("../header/Clndr/header.php");
+			}
+		?>
 		</header>
-		<div style="margin-top:60px";></div>
+		<div class="top-space"></div>
 		<div style="text-align:center; margin-bottom:-10px;">
 			<h3>
 				<a href="schedule.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("-1 month",strtotime($display_date))); ?>" class="def_a"><<</a>
@@ -144,12 +184,187 @@
 			</h3>
 		</div>
 
-		<div class="mail_work">
-			
+		<div class="mail_work">		
 			<span class="textposition" style="font-size:12px;text-decoration: underline;"><a href="./mail_regist.php">■申請メール対応登録</a></span>
-
 		</div>
+<?php
+	if(strpos($ua,"iPhone")||strpos($ua,"Android"))
+	{
+?>
+		<table>
+		<thead>
+		</thead>
+		<tbody>
+				<?php
+					for($i = 1; $i <= $last_day; $i++)
+					{
+						echo "<tr>";
 
+						if( $i >=1 && $i <= 9)
+						{
+							$days = date('Y-m',strtotime($display_date))."-0".$i;
+						}
+						else
+						{
+							$days = date('Y-m',strtotime($display_date))."-".$i;
+						}
+
+						$dt = mktime(0,0,0,$month,$i,$year);
+						$dotw = date("w",$dt);
+
+						if($dotw == 0)
+						{
+							echo "<td class='sunday work'>\n";
+						}
+						else if($dotw == 6)
+						{
+							echo "<td class='saturday work'>\n";
+						}
+						else
+						{
+							$holiflg = 0;
+
+							for($h = 0; $h < count($holiday); $h++)
+							{
+								if(!strcmp($days,$holiday[$h])){	$holiflg = 1;	}
+								if($holiflg == 1){	break;	}
+							}
+							if($holiflg == 1)
+							{
+								echo "<td class='holiday work'>\n";
+							}
+							else
+							{
+								echo "<td class='weekday work'>\n";
+							}
+						}
+
+						echo $i;
+						echo $week_jp[$dotw];
+						echo "</td>\n";
+
+						$stmt = $pdo->prepare("select work,apploval from schedule where staffid = :staffid and date=:date");
+						$stmt->bindParam(':staffid',$staffid);					
+						$stmt->bindParam(':date',$days);
+						$stmt->execute();
+						$wrkCnt = $stmt->rowCount();
+						$rs = $stmt->fetchAll();
+
+						if($dotw == 0)
+						{
+							echo "<td class='sunday work'>\n";
+						}
+						else if($dotw == 6)
+						{
+							echo "<td class='saturday work'>\n";
+						}
+						else
+						{
+							for($h = 0; $h < count($holiday); $h++)
+							{
+								if(!strcmp($days,$holiday[$h]))
+								{
+									$holiflg = 1;
+								}
+
+								if($holiflg == 1)
+								{
+									break;
+								}
+							}
+
+
+							if($holiflg == 1)
+							{
+								echo "<td class='holiday work'>\n";
+							}
+							else
+							{
+								echo "<td class='work'>\n";
+								
+							}
+							$holiflg = 0;
+						}
+
+						echo "<a class='days' href='./result.php?regDay=".$days."'>";
+
+						if(empty($rs[0]['work']) && ($dotw == 0 || $dotw == 6))	//業務登録がなく、曜日値が0（日）か6（土）だったら「休」
+						{
+							echo "休";
+						}
+						else if(empty($rs[0]['work'])&& ($dotw >= 1 || $dotw <=5))
+						{
+							for($h = 0; $h < count($holiday); $h++)
+							{
+								if(!strcmp($days,$holiday[$h]))	//祝日用配列の要素と$daysの値が一緒だったら祝日フラグを1に
+								{
+									$holiflg = 1;
+								}
+
+								if($holiflg == 1)	//祝日フラグが立ったらfor文からbreak;
+								{
+									break;
+								}
+							}
+							if($holiflg == 1)	//祝日フラグが1の場合はデフォルトが「休」
+							{
+								echo "休";
+							}
+							else
+							{
+								echo "出";
+							}
+						}
+						else
+						{
+							for($l = 0; $l < $wrkCnt; $l++)
+							{
+								if($rs[$l]["apploval"] == 0)	//未承認の場合は赤文字にする
+								{
+									echo "<span style='color:red'>";
+								}
+								
+								if(!strcmp($rs[$l]['work'],"CX電話番"))
+								{	
+									echo "<i class='icon-phone' style='font-size:18px;vertical-align:middle;'></i>";
+								}
+								else if(!strcmp($rs[$l]['work'],"mail_main"))
+								{
+									echo "<i class='icon-mail_main' style='font-size:19px;margin-right:12px;margin-left:8px;'></i>";
+								}
+								else if(!strcmp($rs[$l]['work'],"mail_sub"))
+								{
+									echo "<i class='icon-mail_sub' style='font-size:19px;margin-right:12px;margin-left:8px;'></i>";
+								}
+								else
+								{
+									echo $rs[$l]["work"];
+								}
+								
+								if($rs[$l]["apploval"] == 0){	echo "</span>";	}
+
+								if($l != $wrkCnt - 1)
+								{
+									if(strcmp($rs[$l]['work'],"CX電話番"))
+									{
+										echo "<br />";
+									}
+								}
+							}
+						}
+						echo "</a></td>\n";		
+						echo "</tr>\n";
+					}
+				?>
+		</tbody>
+		<tfoot>
+		</tfoot>
+	</table>
+<?php
+	}
+	else
+	{
+?>
 		<table>
 			<tr>
 				<th><div style="color:red;background-color:#ffeaea;'">日</div></th>
@@ -331,6 +546,9 @@
 			?>
 			</tr>
 		</table>
+<?php
+	}
+?>
 	</body>
 </html>
 <?php

@@ -29,33 +29,32 @@
 		$mng_flg = $flg["mngflg"];
 	}
 ?>
-<table class="header">
-	<tr>
-		<td class="text-align-left head" style="width:5%;">
-			<a class="header" href="./schedule.php">個人スケジュール</a>
-		</td>
-		<td class="text-align-left head" style="width:4%;">
-			<a class="header" href="./manage.php">全体スケジュール</a>
-		</td>
-<?php
-	if($mng_flg == 1 || $staffid == 1216)
-	{
-?>
-		<td  class="text-align-left head" style="width:5%;">
-			<a class="header" href="../../top.php">topへ</a>
-		</td>
-<?php
-	}
-?>
-		<td class="text-align-right head">
-<?php
-	if(isset($_SESSION["staffid"]))
-	{
-		echo "ログインユーザ：".$ac_name." ".$ac_fname;
-		echo "<a class='header' style='margin-left:20px;margin-right:15px;' href='../logout.php'>ログアウト</a>";
-		
-	}
-?>
-		</td>
-	</tr>
-</table>
+	<table class="header">
+		<tr>
+			<td class="text-align-left head">
+				<a class="header" href="./schedule.php">個人スケジュール</a>
+			</td>
+			<td class="text-align-left head">
+				<a class="header" href="./manage.php">全体スケジュール</a>
+			</td>
+		<?php
+		if($mng_flg == 1 || $staffid == 1216)
+		{
+		?>
+			<td  class="text-align-left head">
+				<a class="header" href="../../top.php">topへ</a>
+			</td>
+		<?php
+		}
+		?>
+			<td class="text-align-right head">
+		<?php
+		if(isset($_SESSION["staffid"]))
+		{
+			echo "ログインユーザ：".$ac_name." ".$ac_fname;
+			echo "<a class='header' style='margin-left:20px;margin-right:15px;' href='../logout.php'>ログアウト</a>";
+		}
+		?>
+			</td>
+		</tr>
+	</table>

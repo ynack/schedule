@@ -20,8 +20,6 @@
 
 .top-space  {   margin-top: 60px;   }
 
-
-
 .title-lg,.title-md,.title-nm,
 .title-sm,.title-ty,.title-hg
 {
@@ -111,14 +109,14 @@
 	font-size:60%;
 	margin-top: 25px;
 	width:180px;
-	//border:solid 1px;
+	/*  border:solid 1px;   */
 }
 
 .selectContents
 {
 	width:180px;
 	height:94px;
-	//border:1px solid;
+	/* border:1px solid;    */
 	margin-right:auto;
 	margin-left:auto;
 }
@@ -131,20 +129,9 @@
 	height:20px;
 }
 
-.input-text_login
-{
-	width:140px;
-}
-
-.input-text_usercr
-{
-	width:150px;
-}
-
-.input-text_fln
-{
-	width:60px;
-}
+.input-text_login {   width:140px; }
+.input-text_usercr {	width:150px;    }
+.input-text_fln{	width:60px; }
 
 .selectContents
 {
@@ -177,12 +164,7 @@
 .alreadyBtn_md{ width:86px; }
 .alreadyBtn_sm{ width:52px; }
 
-
-
-
 /*	セレクトボックス関連	*/
-
-
 .text-position1
 {
 	font-size: 13px;

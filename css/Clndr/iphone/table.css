@@ -1,6 +1,25 @@
 table, table.css
 {
 	border: solid 1px;
+	border-collapse: collapse;
+	width:90%;
+	height:520px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+td
+{
+	border: solid 1px;
+	text-align: right;
+	vertical-align: top;
+}
+
+td.head
+{
+	border: solid 1px;
+	text-align: right;
+	vertical-align: top;
 }
 
 td.work

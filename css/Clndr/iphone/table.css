@@ -1,0 +1,43 @@
+table, table.css
+{
+	border: solid 1px;
+}
+
+td.work
+{
+	border: solid 1px;
+	text-align: right;
+	vertical-align: middle;
+	font-size: 14px;
+}
+
+.sunday
+{
+	background-color: #ffe5e5;
+	height: 50px;
+	white-space: nowrap;
+	font-size: 14px;
+}
+
+.saturday
+{
+	background-color: #e5e5ff;
+	height: 50px;
+	white-space: nowrap;
+	font-size: 14px;
+}
+
+.holiday
+{
+	background-color: #ffe5e5;
+	height: 50px;
+	font-size: 14px;
+}
+
+td.weekday
+{
+	width: 1%;
+	height: 50px;
+	border: solid 1px;
+	font-size: 14px;
+}

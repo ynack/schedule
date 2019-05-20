@@ -153,7 +153,7 @@
 		<style>
 			table
 			{
-				//border: solid 1px;
+				border: solid 1px;
 				border-collapse: collapse;
 				width:90%;
 				height:520px;
@@ -161,23 +161,11 @@
 				margin-left: auto;
 			}
 
-			tr
-			{
-				border: solid 1px;
-			}
-
 			td.head
 			{
 				border: solid 1px;
 				text-align: right;
 				vertical-align: top;
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
 			}
 
 			a.days
@@ -185,38 +173,9 @@
 				display: block;
 				width: 100%;
 				height:100%;
-
 				text-decoration: none;
 			}
 
-			.title
-			{
-				width:264px;
-				height:30px;
-				//border:1px solid;
-				margin-left: auto;
-				margin-right: auto;
-			}
-			.alreadyTitle
-			{
-				width:114px;
-				height:30px;
-				//border:1px solid;
-				margin-top:130px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.alreadyCont
-			{
-				width:200px;
-				height:50px;
-				//border:1px solid;
-				margin-top:15px;
-				margin-left: auto;
-				margin-right: auto;
-				margin-bottom:15px;
-			}
 		</style>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
@@ -283,7 +242,6 @@
 					return false;
 				}
 			}
-
 		</script>
 	</head>
 	<body>
@@ -307,19 +265,19 @@
 			}
 		?>
 		</header>
-		<div style="margin-top:60px;"></div>
+		<div class="top-space"></div>
+				
 		<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 		
-				<?php
-					if(isset($regist_id))
-					{
-						echo "<div class=\"title-lg\"><h3>".$name.$f_name."の<br />".$regist_date."のスケジュール</h3>";
-					}
-					else
-					{
-						echo "<div class=\"title\">\n<h3>".$regist_date."のスケジュール</h3>";
-					}
-				?>
-			</div>
+			<?php
+				if(isset($regist_id))
+				{
+					echo "<div class=\"title-lg\"><h3>".$name.$f_name."の<br />".$regist_date."のスケジュール</h3>";
+				}
+				else
+				{
+					echo "<div class=\"title-md\">\n<h3>".$regist_date."のスケジュール</h3>";
+				}
+			?>
 
 			<div class="content content_reg">
 				<div>
@@ -377,11 +335,13 @@
 				</div>
 			</div>
 		</form>
+
 		<?php
 			if($today_work[0])
 			{
-				echo "<div class='alreadyTitle'>";
-				echo "<h4>登録済みの予定</h4>\n";
+				echo "<div class='alreadyWork'>";
+				echo "<div style='width:280px;height:30px; background-color:#000;'>";
+				echo "<h4 style='color:#fff;'>登録済みの予定</h4>\n";
 				echo "</div>";
 				for($x = 0; $x < $count; $x++)
 				{
@@ -421,9 +381,7 @@
 					{
 						echo "<div class=\"alreadyBtn_md\">";
 					}
-
 		?>
-
 				<form name="change" action="./change.php" method="POST" style="margin: 0px; float: left;">
 					<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
 					<input type="hidden" name="operation" value="change" />

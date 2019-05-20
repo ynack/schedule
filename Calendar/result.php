@@ -122,9 +122,34 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
-		<link rel="stylesheet" href="../css/Clndr/header.css" />
-		<link rel="stylesheet" href="../css/Clndr/main.css" />
+		<script src="../js/jquery.js"></script>
+		<?php
+			$ua = $_SERVER["HTTP_USER_AGENT"];
+			if(strpos($ua,"iPhone"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
+			}
+			else if(strpos($ua,"Android"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+			}
+			else
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+			}
+		?>	
 		<style>
 			table
 			{
@@ -141,7 +166,7 @@
 				border: solid 1px;
 			}
 
-			td
+			td.head
 			{
 				border: solid 1px;
 				text-align: right;
@@ -263,10 +288,24 @@
 	</head>
 	<body>
 		<header>
-			<?php
-				
-				include("./CntHeader/header.php");
-			?>
+		<?php
+			if(strpos($ua,"iPhone"))
+			{
+				include("../header/Clndr/iphone_header.php");
+			}
+			else if(strpos($ua,"Android"))
+			{
+				include("../header/Clndr/android_header.php");
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				include("../header/Clndr/win_header.php");
+			}
+			else
+			{
+				include("../header/Clndr/header.php");
+			}
+		?>
 		</header>
 		<div style="margin-top:60px;"></div>
 		<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 		

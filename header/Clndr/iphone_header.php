@@ -25,17 +25,17 @@
 ?>
 <table class="header">
 	<tr>
-		<td class="text-align-left head" style="width:5%;">
+		<td class="head">
 			<a class="header" href="./schedule.php">個人</a>
 		</td>
-		<td class="text-align-left head" style="width:4%;">
+		<td class="head">
 			<a class="header" href="./manage.php">全体</a>
 		</td>
 		<?php
 	if($staffid == 1216)
 	{
 ?>
-		<td  class="text-align-left head" style="width:5%;">
+		<td  class="head">
 			<a class="header" href="../top.php">topへ</a>
 		</td>
 <?php

@@ -132,23 +132,26 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
+		<script src="../js/jquery.js"></script>
 		<?php
 			$ua = $_SERVER["HTTP_USER_AGENT"];
 			if(strpos($ua,"iPhone"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />"; 
 			}
 			else if(strpos($ua,"Android"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
 			}
 			else if(strpos($ua,"Windows"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
 			}
 			else
 			{
@@ -179,7 +182,6 @@
 			tr
 			{
 				border: solid 1px;
-				margin-top:20px;
 			}
 
 			td
@@ -187,18 +189,8 @@
 				border: solid 1px;
 				text-align: right;
 				vertical-align: top;
-				width:14%;
 			}
-			tr.none
-			{
-				border:none;
-			}
-			td.none
-			{
-				border: solid 1px;
-				text-align: left;
-				border:none;
-			}
+
 			.c_button
 			{
 				text-align: center;
@@ -207,17 +199,16 @@
 
 			th
 			{
-				//border: solid 1px;
 				height:20px;
 			}
 
-			a.days
+			.cntBox
 			{
-				display: block;
-				width: 100%;
-				height:100%;
-
-				text-decoration: none;
+				width:208px;
+				height:260px;
+				/*border:solid 1px;*/
+				margin-right:auto;
+				margin-left:auto;
 			}
 		</style>
 		<script>
@@ -303,139 +294,127 @@
 		<?php
 			if(strpos($ua,"iPhone"))
 			{
-				include("./CntHeader/iphone_header.php");
+				include("../header/Clndr/iphone_header.php");
 			}
 			else if(strpos($ua,"Android"))
 			{
-				include("./CntHeader/android_header.php");
+				include("./header/Clndr/android_header.php");
 			}
 			else if(strpos($ua,"Windows"))
 			{
-				include("./CntHeader/win_header.php");
+				include("./header/Clndr/win_header.php");
 			}
 			else
 			{
-				include("./CntHeader/header.php");
+				include("./header/Clndr/header.php");
 			}
 		?>
 		</header>
-		<div style="margin-top:60px;"></div>
-		<!--<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()">-->
-			<div class="title-md">
-				<?php echo "<h3>".$change_date."のスケジュール</h3>"; ?>
-			</div>
-			<div class="content">
+		<div class="top-space"></div>
+		<div class="title-md">
+			<?php echo "<h3>".$change_date."のスケジュール</h3>"; ?>
+		</div>
 <?php
 		for($i = 0; $i < $count; $i++)
 		{
 ?>
-			<table class="cnt">
-				<tr class="none">
-					<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()">				
-						<div>
-							■開始予定時刻：
-							<select name="start" id="strt<?php echo $i;?>">
-							<?php
-								if($today_start[$i])
-								{
-									echo "<option value='".$today_start[$i]."'>".$today_start[$i]."</option>";
-									echo "<script src=\"../js/time.js\"></script>";
-								}
-								else
-								{
-									echo "<script src=\"../js/time.js\"></script>";
-								}
-							?>
-							</select>
-						</div>
-						<div>
-							■終了予定時刻：
-							<select name="finish" id="fin<?php echo $i;?>">
-							<?php
-								if($today_finish[$i])
-								{
-									echo "<option value='".$today_finish[$i]."'>".$today_finish[$i]."</option>";
-									echo "<script src=\"../js/time.js\"></script>";
-								}
-								else
-								{
-									echo "<script src=\"../js/time.js\"></script>";
-								}
-							?>
-							</select>
-						</div>
-						<div style="margin-top:5px;margin-bottom: 15px;">
-							<?php
-								if($today_allday[$i])
-								{
-									echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" checked = 'checked' onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','ad".$i."','pm".$i."',this.checked);\" />午前&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
+			<div class="cntBox">
+				<form name="workplan" action="./work_regist.php" method="POST" style="display: inline-block;" onsubmit="return reg_check()">				
+					<div>
+						■開始予定時刻：
+						<select name="start" id="strt<?php echo $i;?>">
+						<?php
+							if($today_start[$i])
+							{
+								echo "<option value='".$today_start[$i]."'>".$today_start[$i]."</option>";
+								echo "<script src=\"../js/time.js\"></script>";
+							}
+							else
+							{
+								echo "<script src=\"../js/time.js\"></script>";
+							}
+						?>
+						</select>
+					</div>
+					<div>
+						■終了予定時刻：
+						<select name="finish" id="fin<?php echo $i;?>">
+						<?php
+							if($today_finish[$i])
+							{
+								echo "<option value='".$today_finish[$i]."'>".$today_finish[$i]."</option>";
+								echo "<script src=\"../js/time.js\"></script>";
+							}
+							else
+							{
+								echo "<script src=\"../js/time.js\"></script>";
+							}
+						?>
+						</select>
+					</div>
+					<div style="margin-top:5px;margin-bottom: 15px;">
+						<?php
+							if($today_allday[$i])
+							{
+								echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" checked = 'checked' onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','ad".$i."','pm".$i."',this.checked);\" />午前&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
 
-								}
-								else if($today_am[$i])
-								{
-									echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" checked = 'checked'  onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
+							}
+							else if($today_am[$i])
+							{
+								echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" checked = 'checked'  onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
 
-								}
-								else if($today_pm[$i])
-								{
-									echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" checked = 'checked' onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
+							}
+							else if($today_pm[$i])
+							{
+								echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" checked = 'checked' onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."',this.checked);\" />午後";
 
-								}
-								else
-								{
-									echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
-									echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."  ',this.checked);\" />午後";
-								}
-							?>				
-						</div>
-						業務内容：
-						<div>
-							<?php
-								if($today_work[$i])
-								{
-									echo "<textarea name=\"work\" rows=\"3\" cols=\"30\">".$today_work[$i]."</textarea>";
-								}
-								else
-								{
-									echo "<textarea name=\"work\" rows=\"3\" cols=\"30\"></textarea>";
-								}
-							?>
-						</div>
-					</tr>
+							}
+							else
+							{
+								echo "<input type=\"checkbox\" name=\"AllDay\" id=\"ad".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','pm".$i."',this.checked);\" />終日&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"am\" id=\"am".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','pm".$i."','ad".$i."',this.checked);\" />午前&nbsp;&nbsp;";
+								echo "<input type=\"checkbox\" name=\"pm\" id=\"pm".$i."\" onclick=\"AllDayChk('strt".$i."','fin".$i."','am".$i."','ad".$i."  ',this.checked);\" />午後";
+							}
+						?>
+					</div>
+					業務内容：
+					<div>
+						<?php
+							if($today_work[$i])
+							{
+								echo "<textarea name=\"work\" rows=\"3\" cols=\"30\">".$today_work[$i]."</textarea>";
+							}
+							else
+							{
+								echo "<textarea name=\"work\" rows=\"3\" cols=\"30\"></textarea>";
+							}
+						?>
+					</div>
+			
 					<input type="hidden" name="operation" value="update" />
 					<input type="hidden" name="reg_date" value="<?php echo $change_date; ?>" />
-					<input type="hidden" name="oldwork" value="<?php echo $old_work[$i]; ?>" />
-					<tr class="none">
-						<div class="alreadyBtn_lg">
-								<button type="submit" class="btn">修正</button>
-					</form>
-					<form name="delform" action="./work_regist.php" method="POST" style="margin:0px;float:left;" onsubmit="return del_check()">
-						<input type="hidden" name="d_date" value="<?php echo $change_date; ?>" />
-						<input type="hidden" name="d_work" value="<?php echo $today_work[$i]; ?>" />
-						<input type="hidden" name="operation" value="del" />
-						<button type="submit" class="btn" style="margin-left:8px;">削除</button>
-					</form>
-				</div>
-			</tr>
-		</table>
+					<input type="hidden" name="oldwork" value="<?php echo $old_work[$i]; ?>" />			
+					<button type="submit" class="btn" style="margin-left:50px;">修正</button>					
+				</form>
+				<form name="delform" action="./work_regist.php" method="POST" style="display: inline-block;" onsubmit="return del_check()">
+					<input type="hidden" name="d_date" value="<?php echo $change_date; ?>" />
+					<input type="hidden" name="d_work" value="<?php echo $today_work[$i]; ?>" />
+					<input type="hidden" name="operation" value="del" />
+					<button type="submit" class="btn" style="margin-left:-90px;">削除</button>
+				</form>
+			</div>
 <?php
 		}			
 ?>
-
-					<!--<input type="hidden" name="reg_date" value="<?php echo $change_date; ?>" />
-					<input type="hidden" name="operation" value="update" />-->
-				<div class="alreadyBtn_sm">
-					<button type="button" class="btn" onclick="history.back();">戻る</button>
-				</div>
-			</div>
-		
+		<div class="alreadyBtn_sm">
+			<button type="button" class="btn" onclick="history.back();">戻る</button>
+		</div>		
 	</body>
 </html>
 <?php

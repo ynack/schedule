@@ -1,4 +1,4 @@
-table, table.css
+table
 {
 	border: solid 1px;
 	border-collapse: collapse;
@@ -6,6 +6,11 @@ table, table.css
 	height:520px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+table#mngtbl
+{
+	font-size: 70%;
 }
 
 td
@@ -17,7 +22,7 @@ td
 
 td.head
 {
-	
+}
 
 td.work
 {

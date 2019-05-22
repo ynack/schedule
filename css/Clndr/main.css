@@ -5,6 +5,10 @@ body
 	padding:0;
 }
 
+hr
+{
+	width:180px;
+}
 .attention
 {
 	display: inline;

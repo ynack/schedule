@@ -88,13 +88,17 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script src="../js/jquery.js"></script>
 		<?php
 			$ua = $_SERVER["HTTP_USER_AGENT"];
 			if(strpos($ua,"iPhone"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_header.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_main.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />"; 
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
 			}
 			else if(strpos($ua,"Android"))
 			{
@@ -106,24 +110,14 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/header.css\" />\n";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />\n";
 			}
-		?>		
-		<style>
-			.title_ng
-			{
-				width:272px;
-				height:80px;
-				//border: 1px solid;
-				margin-right: auto;
-				margin-left: auto;
-			}
-		</style>
+		?>
 	</head>
 	<body>
 		<div style="margin-top:60px"></div>
 <?php
 		if(!strcmp($_POST["operation"],"add") && (empty($staffid) || empty($name) || empty($passwd)))
 		{
-			echo "<div class='title_ng'>";
+			echo "<div class='content-outer'>";
 			if(empty($staffid))
 			{
 				echo $not_id;
@@ -146,7 +140,7 @@
 		}
 		else if(!strcmp($_POST["operation"],"update") && (empty($staffid)))
 		{
-			echo "<div class='title_ng'>";
+			echo "<div class='content-outer'>";
 			if(empty($staffid))
 			{
 				echo $not_id;

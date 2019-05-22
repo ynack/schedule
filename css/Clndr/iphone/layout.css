@@ -2,7 +2,7 @@
 {
     width:160px;
     height:180px;
-    /*border:1px solid;*/
+    border:1px solid;
     margin-left: auto;
     margin-right: auto;
 }
@@ -11,7 +11,7 @@
 {
     width:156px;
     height:30px;
-    /*border:1px solid;*/
+    border:1px solid;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -19,33 +19,74 @@
 }
 
 .top-space  {   margin-top: 60px;   }
+.form-space	{	margin-bottom: 14px;	}
 
 .title-lg,.title-md,.title-nm,
 .title-sm,.title-ty,.title-hg
 {
 	height:30px;
-	/*border:1px solid;*/
+	border:1px solid;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .title-hg{	width:340px;}
-.title-lg{	width:302px; height:50px; }
+.title-lg{	width:302px;}
 .title-md{	width:264px; }
 .title-nm{  width:216px; }
 .title-sm{	width:186px; }
 .title-ty{	width:102px; }
 
+.content,
+.content-outer,
+.content-hg, .content-lg, .content-md,
+.content-sm, .content-ty, .content-ng
+{
+	border:1px solid;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .content
 {
-	width:210px;
-	height:200px;
-	/*border:1px solid;*/
+	width:234px;
+	height:280px;	
 	margin-top:15px;
-	margin-left: auto;
+	margin-bottom:10px;
+}
+
+div[class^="content-inner"]
+{
 	margin-right: auto;
+	margin-left: auto;
+	margin-top:15px;
+	margin-bottom:10px;
+	border: solid 1px;
+}
+
+.content-inner
+{
+	width:240px;
+	height:280px;
+}
+
+.content-inner-bg
+{
+	width: 210px;
+	height: 230px;
+}
+
+.content-inner-md
+{
+	width:180px;
+	height: 96px;
+}
+
+.content-outer
+{
+	width:280px;
+	height:400px;
 }
 
 .content-hg
@@ -53,19 +94,7 @@
 	width:256px;
 	margin-top:20px;
 	margin-bottom: 25px;
-	/* border:1px solid;*/
-	margin-left: auto;
-	margin-right: auto;
-}
 
-.content-lg, .content-md,
-.content-sm, .content-ty,
-.content-ng
-{
-	width:210px;
-	/*border:1px solid;*/
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .content-lg
@@ -87,12 +116,6 @@
 	margin-top:5px;
 }
 
-.content-ty
-{
-	height:28px;
-	margin-top:5px;
-}
-
 .content-ng
 {
 	text-align: center;
@@ -100,16 +123,12 @@
 	margin-bottom: 35px;
 }
 
-.content_reg
-{
-	width:232px;
-}
 
 .alreadyCont
 {
-	width:200px;
-	height:50px;
-	/*border:1px solid;*/
+	width:160px;
+	height:90px;
+	border:1px solid;
 	margin-top:15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -121,35 +140,23 @@
 	font-size:60%;
 	margin-top: 25px;
 	width:180px;
-	/*  border:solid 1px;   */
+	border:solid 1px;
 }
 
 .selectContents
 {
 	width:180px;
 	height:94px;
-	/* border:1px solid;    */
+	border:1px solid;    
 	margin-right:auto;
 	margin-left:auto;
 }
-
-/*	テキストフォーム関連	*/
-.input-text, .input-text_login
-{
-	border-radius: 3px;
-	border:solid 2px #333333;
-	height:20px;
-}
-
-.input-text_login {   width:140px; }
-.input-text_usercr {	width:150px;    }
-.input-text_fln{	width:60px; }
 
 .selectContents
 {
 	width:180px;
 	height:96px;
-	/*border:1px solid;*/
+	border:1px solid;
 	margin-right:auto;
 	margin-left:auto;
 }
@@ -161,9 +168,9 @@
 .alreadyBtn_sm
 {
 	height:30px;
-	/*border:1px solid;*/
+	border:1px solid;
 	text-align: center;
-	
+	margin-top:10px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -181,19 +188,7 @@
 {
 	font-size: 13px;
 	margin-top: 15px;
-	margin-left: 18px;
-}
-
-/* テキストエリア関連	*/
-textarea
-{
-	width:190px;
-	height:60px;
-	text-decoration: none;
-
-	border-radius: 5px;
-	border:solid 2px #333;
-	background:none;
+	
 }
 
 .mail_work

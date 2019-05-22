@@ -148,19 +148,13 @@
 			{
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
 			}
 		?>	
 		<style>
-			table
-			{
-				border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:520px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-
 			td.head
 			{
 				border: solid 1px;
@@ -175,35 +169,6 @@
 				height:100%;
 				text-decoration: none;
 			}
-
-			.Regist_Box
-			{
-				width:280px;
-				height:400px;
-				/*border: solid 1px;*/
-				margin-right:auto;
-				margin-left:auto;
-			}
-
-			.alreadyBar
-			{
-				width:280px;
-				height:30px;
-				background-color:#000;
-				margin-right:auto;
-				margin-left: auto;
-				margin-bottom: 18px;
-			}
-
-			.alreadyBox
-			{
-				width:160px;
-				height:90px;
-				/*border: solid 1px;*/
-				margin-right:auto;
-				margin-left: auto;
-			}
-
 		</style>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
@@ -274,41 +239,24 @@
 	</head>
 	<body>
 		<header>
-		<?php
-			if(strpos($ua,"iPhone"))
-			{
-				include("../header/Clndr/iphone_header.php");
-			}
-			else if(strpos($ua,"Android"))
-			{
-				include("../header/Clndr/android_header.php");
-			}
-			else if(strpos($ua,"Windows"))
-			{
-				include("../header/Clndr/win_header.php");
-			}
-			else
-			{
-				include("../header/Clndr/header.php");
-			}
-		?>
+			<?php include("../include_php/device_header.php");?>
 		</header>
 		<div class="top-space"></div>
 				
-		<div class="Regist_Box">
+		<div class="content-outer">
 			<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 		
 				<?php
 					if(isset($regist_id))
 					{
-						echo "<div class=\"title-lg\"><h3>".$name.$f_name."の<br />".$regist_date."のスケジュール</h3></div>";
+						echo "<div class=\"title-lg\">".$name.$f_name."の<br />".$regist_date."のスケジュール</div>";
 					}
 					else
 					{
-						echo "<div class=\"title-md\">\n<h3>".$regist_date."のスケジュール</h3></div>";
+						echo "<div class=\"title-md\">\n".$regist_date."のスケジュール</div>";
 					}
 				?>
 
-				<div class="content content_reg">
+				<div class="content-inner">
 					<div>
 						■開始予定時刻：
 						<select name="start" id="strt">
@@ -358,11 +306,12 @@
 					<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
 					<input type="hidden" name="operation" value="add" />
 					<input type="hidden" name="mng_reg" value="<?php echo $regist_id; ?>" />
-					<div class="button_form">
-						<button type="button" class="btn" onclick="location.href='./schedule.php'">戻る</button>
-						<button type="submit" class="btn">登録</button>
-					</div>
 				</div>
+				<div class="button_form">
+					<button type="button" class="btn" onclick="location.href='./schedule.php'">戻る</button>
+					<button type="submit" class="btn">登録</button>
+				</div>
+
 			</form>
 		</div>
 		<?php
@@ -375,11 +324,11 @@
 				{
 					if($apploval[$x] == 0 && !$_POST["apploval"])
 					{
-						echo "<div class='alreadyBox' style='color:red;'>\n";
+						echo "<div class='alreadyCont' style='color:red;'>\n";
 					}
 					else
 					{
-						echo "<div class='alreadyBox'>\n";
+						echo "<div class='alreadyCont'>\n";
 					}
 					
 					if($today_allday[$x] == "on")
@@ -415,6 +364,7 @@
 						echo "</div>";
 					}
 					echo "</div>";
+					echo "<hr>";
 				}
 		?>
 			<div class="alreadyBtn_md">

@@ -142,6 +142,7 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />"; 
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
 			}
 			else if(strpos($ua,"Android"))
 			{
@@ -160,56 +161,6 @@
 			}
 		?>	
 		<style>
-			table
-			{
-				border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:320px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-
-			table.cnt
-			{
-				border: solid 1px;
-				border:none;
-				width:90%;
-				height:10px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-			tr
-			{
-				border: solid 1px;
-			}
-
-			td
-			{
-				border: solid 1px;
-				text-align: right;
-				vertical-align: top;
-			}
-
-			.c_button
-			{
-				text-align: center;
-				vertical-align: middle;
-			}
-
-			th
-			{
-				height:20px;
-			}
-
-			.cntBox
-			{
-				width:208px;
-				height:260px;
-				/*border:solid 1px;*/
-				margin-right:auto;
-				margin-left:auto;
-			}
 		</style>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
@@ -291,34 +242,17 @@
 	</head>
 	<body>
 		<header>
-		<?php
-			if(strpos($ua,"iPhone"))
-			{
-				include("../header/Clndr/iphone_header.php");
-			}
-			else if(strpos($ua,"Android"))
-			{
-				include("./header/Clndr/android_header.php");
-			}
-			else if(strpos($ua,"Windows"))
-			{
-				include("./header/Clndr/win_header.php");
-			}
-			else
-			{
-				include("./header/Clndr/header.php");
-			}
-		?>
+		<?php include("../include_php/device_header.php"); ?>
 		</header>
 		<div class="top-space"></div>
 		<div class="title-md">
-			<?php echo "<h3>".$change_date."のスケジュール</h3>"; ?>
+			<?php echo $change_date."のスケジュール"; ?>
 		</div>
 <?php
 		for($i = 0; $i < $count; $i++)
 		{
 ?>
-			<div class="cntBox">
+			<div class="content-inner-bg">
 				<form name="workplan" action="./work_regist.php" method="POST" style="display: inline-block;" onsubmit="return reg_check()">				
 					<div>
 						■開始予定時刻：

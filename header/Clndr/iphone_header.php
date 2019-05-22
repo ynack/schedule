@@ -47,7 +47,6 @@
 	{
 		echo "Login:".$ac_name;
 		echo "<a class='header' style='margin-left:30px;margin-right:15px;' href='./logout.php'>Logout</a>";
-		
 	}
 ?>
 		</td>

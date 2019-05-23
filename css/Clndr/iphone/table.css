@@ -20,6 +20,11 @@ td
 	vertical-align: top;
 }
 
+td.mng
+{
+	width:1%;
+}
+
 td.work
 {
 	border: solid 1px;

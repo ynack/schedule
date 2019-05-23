@@ -118,7 +118,7 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />"; 
 			}
 		?>	
-		<link rel="stylesheet" href="../css/font/style.css" />
+		<link rel="stylesheet" href="../css/Clndr/font/style.css" />
 	</head>
 	<body>
 		<header>
@@ -142,7 +142,7 @@
 			<?php
 				/*	月と名前行	*/
 				echo "<tr>\n";
-				echo "<td class='str_right' style='width:1%;'>\n";
+				echo "<td class='mng'>\n";
 				echo str_replace('0','',$month)."月&nbsp;&nbsp;";
 				echo "</td>\n";
 
@@ -178,11 +178,11 @@
 
 					if($dotw == 0)
 					{
-						echo "<td class='mng_sunday'>\n";
+						echo "<td class='mng_sunday mng'>\n";
 					}
 					else if($dotw == 6)
 					{
-						echo "<td class='mng_saturday' >\n";
+						echo "<td class='mng_saturday mng'>\n";
 					}
 					else
 					{
@@ -194,11 +194,11 @@
 						}
 						if($holiflg == 1)
 						{
-							echo "<td class='mng_sunday'>\n";
+							echo "<td class='mng_sunday mng'>\n";
 						}
 						else
 						{
-							echo "<td>\n";
+							echo "<td class='mng'>\n";
 						}
 					}
 					

@@ -7,15 +7,15 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<title>スケジュールサンプル</title>
-		<script src="./js/jquery.js"></script>
+		<script src="../js/jquery.js"></script>
 		<?php
 			$ua = $_SERVER["HTTP_USER_AGENT"];
 			if(strpos($ua,"iPhone"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />\n";
 			}
 			else if(strpos($ua,"Android"))
 			{
@@ -24,8 +24,10 @@
 			}
 			else
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/ui.css\" />˜\n";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />\n";
 			}
 		?>
 	</head>

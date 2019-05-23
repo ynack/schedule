@@ -21,8 +21,14 @@
 .top-space  {   margin-top: 60px;   }
 .form-space	{	margin-bottom: 14px;	}
 
-.title-lg,.title-md,.title-nm,
-.title-sm,.title-ty,.title-hg
+.name-position
+{
+	text-align:center;
+	width:10%;
+}
+
+.title-lg,.title-hg,.title-md,
+.title-nm,.title-sm
 {
 	height:30px;
 	border:1px solid;
@@ -36,24 +42,13 @@
 .title-md{	width:264px; }
 .title-nm{  width:216px; }
 .title-sm{	width:186px; }
-.title-ty{	width:102px; }
 
-.content,
-.content-outer,
-.content-hg, .content-lg, .content-md,
-.content-sm, .content-ty, .content-ng
+.content,.content-outer,
+.content-hg
 {
 	border:1px solid;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.content
-{
-	width:234px;
-	height:280px;	
-	margin-top:15px;
-	margin-bottom:10px;
 }
 
 div[class^="content-inner"]
@@ -94,7 +89,6 @@ div[class^="content-inner"]
 	width:256px;
 	margin-top:20px;
 	margin-bottom: 25px;
-
 }
 
 .content-lg
@@ -102,27 +96,6 @@ div[class^="content-inner"]
 	height:100px;
 	margin-top:15px;
 }
-
-.content-md
-{
-	height:120px;
-	margin-top:15px;
-}
-
-
-.content-sm
-{
-	height:50px;
-	margin-top:5px;
-}
-
-.content-ng
-{
-	text-align: center;
-	margin-top:25px;
-	margin-bottom: 35px;
-}
-
 
 .alreadyCont
 {
@@ -143,23 +116,6 @@ div[class^="content-inner"]
 	border:solid 1px;
 }
 
-.selectContents
-{
-	width:180px;
-	height:94px;
-	border:1px solid;    
-	margin-right:auto;
-	margin-left:auto;
-}
-
-.selectContents
-{
-	width:180px;
-	height:96px;
-	border:1px solid;
-	margin-right:auto;
-	margin-left:auto;
-}
 
 /*	ボタン関連	*/
 .button_form, .button_form-md,
@@ -188,7 +144,6 @@ div[class^="content-inner"]
 {
 	font-size: 13px;
 	margin-top: 15px;
-	
 }
 
 .mail_work

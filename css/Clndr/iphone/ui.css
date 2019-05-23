@@ -6,9 +6,7 @@
 	height:20px;
 }
 
-.input-text_login	{   width:140px;	}
 .input-text_usercr	{	width:150px;	}
-.input-text_fln		{	width:60px;		}
 
 /*  ボタン  */
 .btn
@@ -107,3 +105,16 @@ div[class^="title-"]
 	font-weight: bold;
 }
 
+.mng_sunday
+{
+	text-align:right;
+	background-color: #ffe5e5;
+	white-space: nowrap;
+}
+
+.mng_saturday
+{
+	text-align:right;
+	background-color: #e5e5ff;
+	white-space: nowrap;
+}

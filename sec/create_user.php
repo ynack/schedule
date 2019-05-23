@@ -27,7 +27,6 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />\n";
 			}
 		?>
-		</style>
 		<script>
 			/*	submit前にアラート	*/
 			function reg_check()

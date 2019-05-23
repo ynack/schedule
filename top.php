@@ -67,30 +67,7 @@
 					echo "<link rel=\"stylesheet\" href=\"./css/Clndr/main.css\" />";
 				}
 			?>	
-			<style>
-				table
-				{
-					border: solid 1px;
-					border-collapse: collapse;
-					width:90%;
-					height:520px;
-					margin-right: auto;
-					margin-left: auto;
-				}
-
-				tr
-				{
-					border: solid 1px;
-				}
-
-				td
-				{
-					border: solid 1px;
-					text-align: right;
-					vertical-align: top;
-					width:14%;
-				}
-			</style>
+			
 			<script>
 				window.onload = function()
 				{
@@ -119,8 +96,8 @@
 					}
 				?>
 			</header>
-			<div style="margin-top:60px;"></div>
-			<div class="selectContents">
+			<div class="top-space""></div>
+			<div class="content-inner-md">
 				<div>
 					<?php
 						for($i = 0; $i < count($spid); $i++)

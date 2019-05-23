@@ -162,9 +162,6 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
 			}
 		?>
-		<style>
-
-		</style>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
 			function AllDayChk(selectid1,selectid2,check1,check2,ischecked)

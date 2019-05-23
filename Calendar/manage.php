@@ -75,10 +75,6 @@
 
 		/* ログインしているstaffidが管理者かどうかチェックするのにmngflgの値を取得	*/
 		include("./php/mngck.php");
-//		$mngsql = "select mngflg from staff where staffid = ".$staffid;
-//		$mngck = $pdo->query($mngsql);
-//		$mngck->execute();
-//		$mngacc = $mngck->fetch();
 ?>
 <!doctype html>
 <html lang="ja">
@@ -115,24 +111,7 @@
 			}
 		?>	
 		<style>
-			a.days
-			{
-				display: block;
-				width: 100%;
-				height:100%;
-
-				text-decoration: none;
-			}
-
-			.def_a
-			{
-				display:inline;
-			}
-
-			.str_right
-			{
-				text-align: right;
-			}
+	
 		</style>
 		
 	</head>
@@ -143,9 +122,9 @@
 		<div class="top-space"></div>
 		<div style="text-align:center; margin-bottom:-10px;">
 			<h3>
-				<a href="manage.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("-1 month",strtotime($display_date))); ?>" class="def_a"><<</a>
+				<a href="manage.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("-1 month",strtotime($display_date))); ?>"><<</a>
 				<?php echo date('Y-n',strtotime($display_date)); ?>
-				<a href="manage.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("+1 month",strtotime($display_date))); ?>" class="def_a">>></a>
+				<a href="manage.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("+1 month",strtotime($display_date))); ?>">>></a>
 			</h3>
 		</div>
 		<div class="mail_work">
@@ -169,7 +148,7 @@
 					$sName->execute();
 					$usr = $sName->fetch();
 
-					echo "<td style='text-align:center; width:15%;'>".$usr['name']."</td>\n";
+					echo "<td class='name-position'>".$usr['name']."</td>\n";
 				}
 			
 				echo "</tr>\n";
@@ -194,11 +173,11 @@
 
 					if($dotw == 0)
 					{
-						echo "<td class='str_right' bgcolor='#ffe5e5' nowrap >\n";
+						echo "<td class='mng_sunday'>\n";
 					}
 					else if($dotw == 6)
 					{
-						echo "<td class='str_right' bgcolor='#e5e5ff' nowrap >\n";
+						echo "<td class='mng_saturday' >\n";
 					}
 					else
 					{
@@ -210,11 +189,11 @@
 						}
 						if($holiflg == 1)
 						{
-							echo "<td style='background-color:#ffe5e5;'>\n";
+							echo "<td class='mng_sunday'>\n";
 						}
 						else
 						{
-							echo "<td class='str_right'>\n";
+							echo "<td>\n";
 						}
 					}
 					
@@ -235,11 +214,11 @@
 
 						if($dotw == 0)
 						{
-							echo "<td bgcolor='#ffe5e5'>\n";
+							echo "<td class='mng_sunday'>\n";
 						}
 						else if($dotw == 6)
 						{
-							echo "<td bgcolor='#e5e5ff'>\n";
+							echo "<td class='mng_saturday'>\n";
 						}
 						else
 						{
@@ -257,7 +236,7 @@
 							}
 							if($holiflg == 1)
 							{
-								echo "<td style='background-color:#ffe5e5;'>\n";
+								echo "<td class='mng_sunday'>\n";
 							}
 							else
 							{

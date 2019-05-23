@@ -34,9 +34,6 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
 			}
 		?>
-		<style>
-			
-		</style>
 	</head>
 	<body>
 		<div class="top-space"></div>

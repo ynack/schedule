@@ -241,7 +241,6 @@
 								}
 							}
 
-
 							if($holiflg == 1)
 							{
 								echo "<td class='holiday work'>\n";

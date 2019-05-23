@@ -46,7 +46,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<title>勤怠管理　試用版</title>
 			<script src="./js/jquery.js"></script>
-			<?php	include("../include_php/ua_css.php"); ?>
+			<?php	include("./include_php/ua_css_highrank.php"); ?>
 			<link rel="stylesheet" href="./css/Clndr/font/style.css" />
 			<script>
 				window.onload = function()

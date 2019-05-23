@@ -135,90 +135,35 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
 		<script src="../js/jquery-3.3.1.js"></script>
-		<link rel="stylesheet" href="../css/Clndr/header.css" />";
-		<link rel="stylesheet" href="../css/Clndr/main.css" />";
+		<?php
+			$ua = $_SERVER["HTTP_USER_AGENT"];
+			if(strpos($ua,"iPhone"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/font/style.css\" />";
+			}
+			else if(strpos($ua,"Android"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+			}
+			else
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+			}
+		?>
 		<style>
-			table
-			{
-				//border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:520px;
-				margin-right: auto;
-				margin-left: auto;
-			}
 
-			tr
-			{
-				border: solid 1px;
-			}
-
-			td
-			{
-				border: solid 1px;
-				text-align: right;
-				vertical-align: top;
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
-			}
-
-			a.days
-			{
-				display: block;
-				width: 100%;
-				height:100%;
-
-				text-decoration: none;
-			}
-
-			.title
-			{
-				width:264px;
-				height:30px;
-				//border:1px solid;
-				margin-left: auto;
-				margin-right: auto;
-			}
-			.alreadyTitle
-			{
-				width:114px;
-				height:30px;
-				//border:1px solid;
-				margin-top:130px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.alreadyCont
-			{
-				width:200px;
-				height:50px;
-				//border:1px solid;
-				margin-top:15px;
-				margin-left: auto;
-				margin-right: auto;
-				margin-bottom:15px;
-			}
-			.roleChk
-			{
-				margin-left:10px;
-			}
-			.role
-			{
-				margin-top:18px;
-				font-size:14px;
-			}
-			.mail_already
-			{
-				//border:solid 1px;
-				width:166px;
-				margin:0 auto;
-			}
 		</style>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
@@ -289,14 +234,12 @@
 	</head>
 	<body>
 		<header>
-			<?php
-				include("./CntHeader/header.php");
-			?>
+		<?php include("../include_php/device_header.php");	?>
 		</header>
 		<div style="margin-top:60px;"></div>
 			<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 
 				<div class="title-sm">
-					<?php echo "<h3>申請メール対応登録</h3>"; ?>
+					申請メール対応登録
 				</div>
 
 				<div class="content-hg">
@@ -344,10 +287,10 @@
 						</select>
 						まで
 					</div>
-					<div class="role">
-						<input type="radio" name="role" class="roleChk" value="main" checked>メイン
-						<input type="radio" name="role" class="roleChk" value="sub">サブ
-					</div>
+					
+						<input type="radio" name="role" value="main" checked>メイン
+						<input type="radio" name="role" value="sub">サブ
+					
 					<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
 					<input type="hidden" name="operation" value="mail" />
 					<div class="button_form">
@@ -357,10 +300,12 @@
 				</div>
 			</form>
 		</div>
-		<div class="mail_already">
+		<!--
+		<div class="reg_link">
 			<span style="font-size:12px;">■登録済みメール対応 -></span>
 			<span class="textposition" style="font-size:11px;text-decoration: underline;"><a href="./mail_regist.php">確認</a></span>
 		</div>
+		-->
 	</body>
 </html>
 <?php

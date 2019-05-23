@@ -86,23 +86,27 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
+		<script src="../js/jquery.js"></script>
 		<?php
 			$ua = $_SERVER["HTTP_USER_AGENT"];
 			if(strpos($ua,"iPhone"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/font/style.css\" />";
 			}
 			else if(strpos($ua,"Android"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
 			}
 			else if(strpos($ua,"Windows"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_header.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win_main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
 			}
 			else
 			{
@@ -111,41 +115,6 @@
 			}
 		?>	
 		<style>
-			table
- 			{
-				border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:520px;
-				margin-right: auto;
-				margin-left: auto;
-				font-family: sans-serif;
-				font-size:70%;
-			}
-
-			tr
-			{
-				border: solid 1px;
-			}
-
-			td
-			{
-				border: solid 1px;
-				text-align: right;
-				vertical-align: top;
-			}
-
-			td.head
-			{
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
-			}
-
 			a.days
 			{
 				display: block;
@@ -169,26 +138,9 @@
 	</head>
 	<body>
 		<header>
-		<?php
-			if(strpos($ua,"iPhone"))
-			{
-				include("./CntHeader/iphone_header.php");
-			}
-			else if(strpos($ua,"Android"))
-			{
-				include("./CntHeader/android_header.php");
-			}
-			else if(strpos($ua,"Windows"))
-			{
-				include("./CntHeader/win_header.php");
-			}
-			else
-			{
-				include("./CntHeader/header.php");
-			}
-		?>
+		<?php include("../include_php/device_header.php");?>
 		</header>
-		<div style="margin-top:60px";></div>
+		<div class="top-space"></div>
 		<div style="text-align:center; margin-bottom:-10px;">
 			<h3>
 				<a href="manage.php?first_day_of_month=<?php echo date('Y-m-01',strtotime("-1 month",strtotime($display_date))); ?>" class="def_a"><<</a>
@@ -201,7 +153,8 @@
 			<span class="mail_position" style="font-size:12px;">【<span style="color:#33ff99;font-size:14px;">■</span>:メイン <span style="color:#ffcc99;font-size:14px;">■</span>:サブ】-></span>
 			<span class="textposition" style="font-size:11px;text-decoration: underline;"><a href="./mail_regist.php">申請メール対応登録</a></span>
 		</div>
-		<table>
+
+		<table id="mngtbl">
 			<?php
 				/*	月と名前行	*/
 				echo "<tr>\n";
@@ -219,11 +172,11 @@
 					echo "<td style='text-align:center; width:15%;'>".$usr['name']."</td>\n";
 				}
 			
-				echo "</tr>";
+				echo "</tr>\n";
 
 				for($j = 1; $j <= $last_day; $j++)
 				{
-					echo "<tr>";
+					echo "<tr>\n";
 
 					if( $j >=1 && $j <= 9)
 					{
@@ -308,6 +261,7 @@
 							}
 							else
 							{
+								/*
 								for($i = 0; $i < $wrkCnt; $i++)
 								{
 									if(!strcmp($rs[$i]['work'],"mail_main"))	 //$rs[$i]["work"]にmail_mainが含まれている
@@ -336,6 +290,8 @@
 									echo "<td style='vartical-align:middle;'>\n";
 								}
 								$mail_work = 0;	
+								*/
+								echo "<td>";
 							}
 							$holiflg = 0;
 						}
@@ -380,12 +336,29 @@
 								{
 									echo "<span style='color:red'>";
 								}
-								
+								/*
 								if(strcmp($rs[$i]['work'],"mail_main") && strcmp($rs[$i]["work"],"mail_sub"))
 								{
 									echo $rs[$i]["work"];
 								}
+								*/
 
+								if(!strcmp($rs[$i]["work"],"CX電話番"))
+								{
+									echo "<i class='icon-phone' style='font-size:14px;vertical-align:middle;'></i>";
+								}
+								else if(!strcmp($rs[$i]['work'],"mail_main"))
+								{
+									echo "<i class='icon-mail_main' style='font-size:16px;margin-right:12px;margin-left:8px;'></i>";
+								}
+								else if(!strcmp($rs[$i]['work'],"mail_sub"))
+								{
+									echo "<i class='icon-mail_sub' style='font-size:16px;margin-right:12px;margin-left:8px;'></i>";
+								}
+								else
+								{
+									echo $rs[$i]["work"];
+								}
 								if($rs[$i]["apploval"] == 0){	echo "</span>";	}
 								if($i != $wrkCnt - 1)
 								{

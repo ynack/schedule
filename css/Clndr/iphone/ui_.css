@@ -1,14 +1,4 @@
-/*	テキストフォーム関連	*/
-.input-text, .input-text_login
-{
-	border-radius: 3px;
-	border:solid 1px #333333;
-	height:20px;
-}
-
-.input-text_login	{   width:140px;	}
-.input-text_usercr	{	width:150px;	}
-.input-text_fln		{	width:60px;		}
+/*  テキストフォーム    */
 
 /*  ボタン  */
 .btn
@@ -17,7 +7,7 @@
 	padding: 0.3em 1em;
 	text-decoration: none;
 	color: #333333;
-	border:solid 1px #333333;
+	border:solid 2px #333333;
 	border-radius:3px;
 	transition:.4s;
 	background-color: white;
@@ -68,7 +58,7 @@
 	-webkit-appearance:button;
 	-moz-appearance:button;
 	appearance:button;
-	border: solid 1px #333;
+	border: solid 2px #333;
 	border-radius: 3px;
 }
 
@@ -89,21 +79,4 @@
 	text-shadow: 0 0 0 #828c9a;
 }
 /*  テキストエリア  */
-
-
-/*	その他	*/
-.alreadyBar
-{
-	width:280px;
-	height:30px;
-	background-color:#000;
-	margin-right:auto;
-	margin-left: auto;
-	margin-bottom: 18px;
-}
-
-div[class^="title-"]
-{
-	font-weight: bold;
-}
 

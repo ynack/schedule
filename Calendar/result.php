@@ -122,37 +122,44 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.js"></script>
-		<link rel="stylesheet" href="../css/Clndr/header.css" />
-		<link rel="stylesheet" href="../css/Clndr/main.css" />
+		<script src="../js/jquery.js"></script>
+		<?php
+			$ua = $_SERVER["HTTP_USER_AGENT"];
+			if(strpos($ua,"iPhone"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
+			}
+			else if(strpos($ua,"Android"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+			}
+			else
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
+			}
+		?>	
 		<style>
-			table
-			{
-				//border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:520px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-
-			tr
-			{
-				border: solid 1px;
-			}
-
-			td
+			td.head
 			{
 				border: solid 1px;
 				text-align: right;
 				vertical-align: top;
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
 			}
 
 			a.days
@@ -160,37 +167,7 @@
 				display: block;
 				width: 100%;
 				height:100%;
-
 				text-decoration: none;
-			}
-
-			.title
-			{
-				width:264px;
-				height:30px;
-				//border:1px solid;
-				margin-left: auto;
-				margin-right: auto;
-			}
-			.alreadyTitle
-			{
-				width:114px;
-				height:30px;
-				//border:1px solid;
-				margin-top:130px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.alreadyCont
-			{
-				width:200px;
-				height:50px;
-				//border:1px solid;
-				margin-top:15px;
-				margin-left: auto;
-				margin-right: auto;
-				margin-bottom:15px;
 			}
 		</style>
 		<script>
@@ -258,91 +235,90 @@
 					return false;
 				}
 			}
-
 		</script>
 	</head>
 	<body>
 		<header>
-			<?php
-				
-				include("./CntHeader/header.php");
-			?>
+			<?php include("../include_php/device_header.php");?>
 		</header>
-		<div style="margin-top:60px;"></div>
-		<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 		
+		<div class="top-space"></div>
+				
+		<div class="content-outer">
+			<form name="workplan" action="./work_regist.php" method="POST" onsubmit="return reg_check()"> 		
 				<?php
 					if(isset($regist_id))
 					{
-						echo "<div class=\"title-lg\"><h3>".$name.$f_name."の<br />".$regist_date."のスケジュール</h3>";
+						echo "<div class=\"title-lg\">".$name.$f_name."の<br />".$regist_date."のスケジュール</div>";
 					}
 					else
 					{
-						echo "<div class=\"title\">\n<h3>".$regist_date."のスケジュール</h3>";
+						echo "<div class=\"title-md\">\n".$regist_date."のスケジュール</div>";
 					}
 				?>
-			</div>
 
-			<div class="content content_reg">
-				<div>
-					■開始予定時刻：
-					<select name="start" id="strt">
-						<script src="../js/time.js"></script>
-					</select>
+				<div class="content-inner">
+					<div>
+						■開始予定時刻：
+						<select name="start" id="strt">
+							<script src="../js/time.js"></script>
+						</select>
+					</div>
+					<div>
+						■終了予定時刻：
+						<select name="finish" id="fin">
+							<script src="../js/time.js"></script>
+						</select>
+					</div>
+					<div style="margin-top:5px;margin-bottom: 15px;">
+						<input type="checkbox" name="AllDay" id="ad" onclick="AllDayChk('strt','fin','am','pm',this.checked);" />終日&nbsp;&nbsp;
+						<input type="checkbox" name="am" id="am" onclick="AllDayChk('strt','fin','pm','ad',this.checked);" />午前&nbsp;&nbsp;
+						<input type="checkbox" name="pm" id="pm" onclick="AllDayChk('strt','fin','am','ad',this.checked);" />午後
+					</div>
+					業務内容：
+					<div>
+						<textarea name="work" rows="3" cols="30"></textarea>
+					</div>
+				<?php
+						if(isset($regist_id))
+						{
+							echo "<div>";
+							echo "<span class=\"textposition\" style=\"font-size:12px;text-decoration: underline;\"><a href=\"./mail_regist.php\">申請メール対応登録</a></span>";
+							echo "</div>";
+						}
+				?>
+					<div style="margin-top:15px;">
+						<input type="checkbox" name="evweek" id="evw" onclick="Continuity('evow','trm',this.checked);"/>毎週&nbsp;&nbsp;
+						<input type="checkbox" name="evoweek" id="evow" onclick="Continuity('evw','trm',this.checked);"/>隔週&nbsp;&nbsp;
+						<input type="checkbox" name="term" id="trm" onclick="Continuity('evw','evow',this.checked);"/>期間指定
+						<select name="r_year" id="y">
+							<script src="../js/year.js"></script>
+						</select>
+						-
+						<select name="r_month" id="m">
+							<script src="../js/month.js"></script>
+						</select>
+						-
+						<select name="r_day" id="d">
+							<script src="../js/day.js"></script>
+						</select>
+						まで
+					</div>
+					<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
+					<input type="hidden" name="operation" value="add" />
+					<input type="hidden" name="mng_reg" value="<?php echo $regist_id; ?>" />
 				</div>
-				<div>
-					■終了予定時刻：
-					<select name="finish" id="fin">
-						<script src="../js/time.js"></script>
-					</select>
-				</div>
-				<div style="margin-top:5px;margin-bottom: 15px;">
-					<input type="checkbox" name="AllDay" id="ad" onclick="AllDayChk('strt','fin','am','pm',this.checked);" />終日&nbsp;&nbsp;
-					<input type="checkbox" name="am" id="am" onclick="AllDayChk('strt','fin','pm','ad',this.checked);" />午前&nbsp;&nbsp;
-					<input type="checkbox" name="pm" id="pm" onclick="AllDayChk('strt','fin','am','ad',this.checked);" />午後
-				</div>
-				業務内容：
-				<div>
-					<textarea name="work" rows="3" cols="30"></textarea>
-				</div>
-			<?php
-					if(isset($regist_id))
-					{
-						echo "<div>";
-						echo "<span class=\"textposition\" style=\"font-size:12px;text-decoration: underline;\"><a href=\"./mail_regist.php\">申請メール対応登録</a></span>";
-						echo "</div>";
-					}
-			?>
-				<div style="margin-top:15px;">
-					<input type="checkbox" name="evweek" id="evw" onclick="Continuity('evow','trm',this.checked);"/>毎週&nbsp;&nbsp;
-					<input type="checkbox" name="evoweek" id="evow" onclick="Continuity('evw','trm',this.checked);"/>隔週&nbsp;&nbsp;
-					<input type="checkbox" name="term" id="trm" onclick="Continuity('evw','evow',this.checked);"/>期間指定
-					<select name="r_year" id="y">
-						<script src="../js/year.js"></script>
-					</select>
-					-
-					<select name="r_month" id="m">
-						<script src="../js/month.js"></script>
-					</select>
-					-
-					<select name="r_day" id="d">
-						<script src="../js/day.js"></script>
-					</select>
-					まで
-				</div>
-				<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
-				<input type="hidden" name="operation" value="add" />
-				<input type="hidden" name="mng_reg" value="<?php echo $regist_id; ?>" />
 				<div class="button_form">
 					<button type="button" class="btn" onclick="location.href='./schedule.php'">戻る</button>
 					<button type="submit" class="btn">登録</button>
 				</div>
-			</div>
-		</form>
+
+			</form>
+		</div>
 		<?php
 			if($today_work[0])
 			{
-				echo "<div class='alreadyTitle'>";
-				echo "<h4>登録済みの予定</h4>\n";
+				echo "<div class='alreadyBar'>";
+				echo "<h4 style='color:#fff; text-align:center;'>登録済みの予定</h4>\n";
 				echo "</div>";
 				for($x = 0; $x < $count; $x++)
 				{
@@ -372,40 +348,35 @@
 						echo $today_start[$x] ." - ".$today_finish[$x]."<br />\n";
 					}
 
-					echo $today_work[$x]."</div>\n";
+					echo $today_work[$x]."";
 					
 					if($apploval[$x] == 0)
 					{
-						echo "<div class=\"alreadyBtn_lg\">";
+						echo "<div class=\"alreadyBtn_sm\">";
+						if($apploval[$x] == 0 && !$_POST["apploval"])
+						{
+							echo "<form action=\"./result.php?regDay=<?php echo $regist_date; ?>\" method=\"POST\">";
+							echo "<input type=\"hidden\" name = \"apploval\" value=\"on\" />";
+							echo "<input type=\"hidden\" name = \"appwork\" value=\"".$today_work[$x]."\" />";
+							echo "<button type=\"submit\" class=\"btn\">承認</button>";
+							echo "</form>";
+						}
+						echo "</div>";
 					}
-					else
-					{
-						echo "<div class=\"alreadyBtn_md\">";
-					}
-
+					echo "</div>";
+					echo "<hr>";
+				}
 		?>
-
+			<div class="alreadyBtn_md">
 				<form name="change" action="./change.php" method="POST" style="margin: 0px; float: left;">
 					<input type="hidden" name="reg_date" value="<?php echo $regist_date; ?>" />
 					<input type="hidden" name="operation" value="change" />
 					<button type="submit" class="btn">修正・削除</button>
 				</form>
-		<?php
-			if($apploval[$x] == 0 && !$_POST["apploval"])
-			{
-		?>
-				<form action="./result.php?regDay=<?php echo $regist_date; ?>" method="POST">
-					<input type="hidden" name = "apploval" value="on" />
-					<input type="hidden" name = "appwork" value="<?php echo $today_work[$x]; ?>" />
-					<button type="submit" class="btn">承認</button>
-				</form>
-		<?php
-			}
-		?>
 			</div>
 		</div>
 		<?php
-				}
+				
 			}
 		?>
 	</body>

@@ -215,16 +215,16 @@
 						$stmt->bindParam(':allflg',$allday,PDO::PARAM_STR);
 						$stmt->bindParam(':amflg',$amflg,PDO::PARAM_STR);
 						$stmt->bindParam(':pmflg',$pmflg,PDO::PARAM_STR);
-						$stmt->bindParam(':owork',$oldwork,PDO::PARAM_STR);
+						$stmt->bindParam(':work',$work_content,PDO::PARAM_STR);
 
 						if(!strcmp($op,"update"))
 						{
-							$stmt->bindParam(':work',$work_content,PDO::PARAM_STR);
+							$stmt->bindParam(':owork',$oldwork,PDO::PARAM_STR);
 						}
 
 						$stmt->execute();
 
-						$s_date->modify('+7 days');	//14日追加
+						$s_date->modify('+7 days');	//7日追加
 					}
 				}
 				else if(!strcmp($evoweek,"on"))
@@ -411,93 +411,78 @@
 		<meta charset="utf8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<title>勤怠管理　試用版</title>
-		<script src="../js/jquery-3.3.1.min.js"></script>
-		<link rel="stylesheet" href="../css/Clndr/header.css" />
-		<link rel="stylesheet" href="../css/Clndr/main.css" />
+		<script src="../js/jquery.js"></script>
+		<?php
+			$ua = $_SERVER["HTTP_USER_AGENT"];
+			if(strpos($ua,"iPhone"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />"; 
+			}
+			else if(strpos($ua,"Android"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+			}
+			else if(strpos($ua,"Windows"))
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+			}
+			else
+			{
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+			}
+		?>
 		<style>
-			table
-			{
-				border: solid 1px;
-				border-collapse: collapse;
-				width:90%;
-				height:520px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-
-			tr
-			{
-				border: solid 1px;
-			}
-
-			td
-			{
-				border: solid 1px;
-				text-align: right;
-				vertical-align: top;
-				width:14%;
-			}
-
-			th
-			{
-				border: solid 1px;
-				height:20px;
-			}
-
-			a.days
-			{
-				display: block;
-				width: 100%;
-				height:100%;
-
-				text-decoration: none;
-			}
 		</style>
 	</head>
 	<body>
 		<header>
-		<?php
-			include("./CntHeader/header.php");
-		?>
+		<?php include("../include_php/device_header.php");?>
 		</header>
-		<div style="margin-top:50px;"></div>
+		<div class="top-space"></div>
 		<div class="title-md">
 <?php
 
 		if(!strcmp($op,"add") || !strcmp($op,"mail"))
 		{
-			echo "<h3>以下の内容で登録しました。</h3>\n";
+			echo "以下の内容で登録しました。\n";
 		}
 		else if(!strcmp($op,"update"))
 		{
-			echo "\t\t\t<h3>以下の内容で変更しました。</h3>\n";
+			echo "\t\t\t以下の内容で変更しました。\n";
 		}
 		else if(!strcmp($op,"del"))
 		{
-			echo "<h3>以下の内容を削除しました。</h3>\n";
+			echo "以下の内容を削除しました。\n";
 		}
 ?>		
 		</div>
-		<div class="content-md">
+		<div class="content-inner-md">
 <?php
 		if(!strcmp($op,"add") || !strcmp($op,"update") || !strcmp($op,"mail"))
 		{
 			/*	期間指定があれば終了期間も表示	*/
 			if(!strcmp($evweek,"on"))
 			{
-				echo $date."から".$cont_date."まで毎週<br />";
+				echo $date."から<br />".$cont_date."まで毎週<br />";
 			}
 			else if(!strcmp($evoweek,"on"))
 			{
-				echo $date."から".$cont_date."まで隔週<br />";
+				echo $date."から<br />".$cont_date."まで隔週<br />";
 			}
 			else if(!strcmp($term,"on"))
 			{
-				echo $date."から".$cont_date."まで<br />";
+				echo $date."から<br />".$cont_date."まで<br />";
 			}
 			else if(!strcmp($op,"mail"))
 			{
-				echo $sdate."から".$edate."まで<br />";
+				echo $sdate."から<br />".$edate."まで<br />";
 			}
 			else
 			{
@@ -506,7 +491,7 @@
 
 			if($work_start)
 			{
-				echo $work_start."<br />";
+				echo $work_start." - ";
 			}
 
 			if($work_finish)

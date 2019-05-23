@@ -261,36 +261,6 @@
 							}
 							else
 							{
-								/*
-								for($i = 0; $i < $wrkCnt; $i++)
-								{
-									if(!strcmp($rs[$i]['work'],"mail_main"))	 //$rs[$i]["work"]にmail_mainが含まれている
-									{
-										$mail_work = 1;
-									}
-									else if(!strcmp($rs[$i]['work'],"mail_sub"))	//$rs[$i]["work"]にmail_subが含まれている
-									{
-										$mail_work = 2;
-									}
-									if($mail_work == 1 || $mail_work == 2)	//$rs[$i]["work"]にmail_mainもmail_subが含まれていない
-									{
-										break;
-									}
-								}
-								if($mail_work == 1)
-								{
-									echo "<td style='background-color:#c1ffc1;'>\n";
-								}
-								else if($mail_work == 2)
-								{
-									echo "<td style='background-color:#ffe0c1;'>\n";
-								}
-								else
-								{
-									echo "<td style='vartical-align:middle;'>\n";
-								}
-								$mail_work = 0;	
-								*/
 								echo "<td>";
 							}
 							$holiflg = 0;
@@ -336,12 +306,6 @@
 								{
 									echo "<span style='color:red'>";
 								}
-								/*
-								if(strcmp($rs[$i]['work'],"mail_main") && strcmp($rs[$i]["work"],"mail_sub"))
-								{
-									echo $rs[$i]["work"];
-								}
-								*/
 
 								if(!strcmp($rs[$i]["work"],"CX電話番"))
 								{

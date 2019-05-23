@@ -113,7 +113,7 @@
 		?>
 	</head>
 	<body>
-		<div style="margin-top:60px"></div>
+		<div class="top-space"></div>
 <?php
 		if(!strcmp($_POST["operation"],"add") && (empty($staffid) || empty($name) || empty($passwd)))
 		{

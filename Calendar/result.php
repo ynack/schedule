@@ -153,23 +153,7 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/font/style.css\" />";
 			}
-		?>	
-		<style>
-			td.head
-			{
-				border: solid 1px;
-				text-align: right;
-				vertical-align: top;
-			}
-
-			a.days
-			{
-				display: block;
-				width: 100%;
-				height:100%;
-				text-decoration: none;
-			}
-		</style>
+		?>
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
 			function AllDayChk(selectid1,selectid2,check1,check2,ischecked)
@@ -375,8 +359,7 @@
 				</form>
 			</div>
 		</div>
-		<?php
-				
+		<?php		
 			}
 		?>
 	</body>

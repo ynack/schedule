@@ -24,6 +24,14 @@
         echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/table.css\" />";
         echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/layout.css\" />"; 
     }
+    else if(strpos($ua,"Chrome"))
+    {
+        echo "<link rel=\"stylesheet\" href=\"../css/Clndr/chrm/header.css\" />";
+        echo "<link rel=\"stylesheet\" href=\"../css/Clndr/chrm/main.css\" />";
+        echo "<link rel=\"stylesheet\" href=\"../css/Clndr/chrm/ui.css\" />";
+        echo "<link rel=\"stylesheet\" href=\"../css/Clndr/chrm/table.css\" />";
+        echo "<link rel=\"stylesheet\" href=\"../css/Clndr/chrm/layout.css\" />"; 
+    }
     else
     {
         echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";

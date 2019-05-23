@@ -26,8 +26,10 @@
 			}
 			else
 			{
-				echo "<link rel=\"stylesheet\" href=\"./css/header.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/header.css\" />\n";
 				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/main.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/ui.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/layout.css\" />\n";
 			}
 		?>
 		

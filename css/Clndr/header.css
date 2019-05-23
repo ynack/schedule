@@ -15,7 +15,7 @@
 
 a.header:link{ color:#fff; }
 a.header:visited{ color:#fff; }
-a.header:hovert{ color:#fff; }
+a.header:hover{ color:#fff; }
 a.header:active{ color:#fff; }
 
 table.header
@@ -30,7 +30,14 @@ table.header
 	top:0;
 }
 
+td.head
+{
+	border:solid 1px;
+	text-align: right;
+	vertical-align: top;
+}
+
 a:link{ color:#000; text-decoration: none;}
 a:visited{ color:#000; text-decoration: none;}
-a:hovert{ color:#000; text-decoration: none;}
+a:hover{ color:#000; text-decoration: none;}
 a:active{ color:#000; text-decoration: none;}

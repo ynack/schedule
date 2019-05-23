@@ -144,24 +144,33 @@
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/ui.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/table.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/iphone/layout.css\" />";
-				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/font/style.css\" />";
 			}
 			else if(strpos($ua,"Android"))
 			{
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/header.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/android/layout.css\" />"; 
 			}
 			else if(strpos($ua,"Windows"))
 			{
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/header.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/win/layout.css\" />"; 
 			}
 			else
 			{
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/header.css\" />";
 				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"../css/Clndr/layout.css\" />"; 
 			}
-		?>
+		?>	
+		<link rel="stylesheet" href="../css/font/style.css" />
 		<script>
 			/* チェックボックスでセレクトボックスの有効化/無効化	*/
 			function AllDayChk(selectid1,selectid2,check1,check2,ischecked)

@@ -16,23 +16,30 @@
 			}
 			else if(strpos($ua,"Android"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android_header.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android_main.css\" />\n";				
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/android/layout.css\" />"; 
 			}
-			else if(strpos($ua,"Window"))
+			else if(strpos($ua,"Windows"))
 			{
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win_header.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win_main.css\" />\n";				
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/win/layout.css\" />"; 
 			}
 			else
 			{
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/header.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/main.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/ui.css\" />\n";
-				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/layout.css\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/header.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/main.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/ui.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/table.css\" />";
+				echo "<link rel=\"stylesheet\" href=\"./css/Clndr/layout.css\" />"; 
 			}
-		?>
-		
+		?>	
+		<link rel="stylesheet" href="../css/font/style.css" />
 	</head>
 	<body>
 		<header>

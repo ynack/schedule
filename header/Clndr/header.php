@@ -52,7 +52,7 @@
 		if(isset($_SESSION["staffid"]))
 		{
 			echo "ログインユーザ：".$ac_name." ".$ac_fname;
-			echo "<a class='header' style='margin-left:20px;margin-right:15px;' href='../logout.php'>ログアウト</a>";
+			echo "<a class='header' style='margin-left:20px;margin-right:15px;' href='./logout.php'>ログアウト</a>";
 		}
 		?>
 			</td>

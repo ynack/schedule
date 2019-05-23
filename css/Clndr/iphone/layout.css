@@ -155,3 +155,10 @@ span.textposition
 	position: relative;
 	top:-1px;
 }
+
+.change_delBtn
+{
+	position: absolute;
+	margin-left:-90px;
+	margin-top:-17px;
+}

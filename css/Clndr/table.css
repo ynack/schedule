@@ -13,11 +13,25 @@ table#mngtbl
 	font-size: 70%;
 }
 
+th
+{
+	border: solid 1px;
+	height: 20px;
+}
+
+td.head
+{
+	border: solid 1px;
+	text-align: right;
+	vertical-align: top;
+}
+
 td
 {
 	border: solid 1px;
 	text-align: right;
 	vertical-align: top;
+	width:14%;
 }
 
 td.work

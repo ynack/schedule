@@ -42,7 +42,7 @@
 		{
 		?>
 			<td  class="text-align-left head">
-				<a class="header" href="../../top.php">topへ</a>
+				<a class="header" href="../top.php">topへ</a>
 			</td>
 		<?php
 		}

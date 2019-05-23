@@ -107,6 +107,8 @@
 		if(isset($_POST["apploval"]))
 		{
 			$work = $_POST["appwork"];
+			echo $work;
+			echo $regist_date;
 			$apvsql = "update schedule set apploval=1 where staffid = ".$staffid." && date = '".$regist_date."' && work = '".$work."'";
 			$apvchg = $pdo->query($apvsql);
 			$apvchg->execute();
@@ -355,7 +357,7 @@
 						echo "<div class=\"alreadyBtn_sm\">";
 						if($apploval[$x] == 0 && !$_POST["apploval"])
 						{
-							echo "<form action=\"./result.php?regDay=<?php echo $regist_date; ?>\" method=\"POST\">";
+							echo "<form action=\"./result.php?regDay=".$regist_date."\" method=\"POST\">";
 							echo "<input type=\"hidden\" name = \"apploval\" value=\"on\" />";
 							echo "<input type=\"hidden\" name = \"appwork\" value=\"".$today_work[$x]."\" />";
 							echo "<button type=\"submit\" class=\"btn\">承認</button>";

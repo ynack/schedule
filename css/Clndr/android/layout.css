@@ -1,0 +1,165 @@
+.LoginForm
+{
+    width:180px;
+    height:180px;
+    /*border:1px solid;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-form
+{
+    width:156px;
+    height:30px;
+    /*border:1px solid;*/
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+.top-space  {   margin-top: 60px;   }
+.form-space	{	margin-bottom: 14px;	}
+
+.name-position
+{
+	text-align:center;
+	width:10%;
+}
+
+.title-lg,.title-hg,.title-md,
+.title-nm,.title-sm
+{
+	height:30px;
+	/*border:1px solid;*/
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.title-hg{	width:340px;}
+.title-lg{	width:302px;}
+.title-md{	width:264px; }
+.title-nm{  width:216px; }
+.title-sm{	width:186px; }
+
+.content,.content-outer,
+.content-hg
+{
+	/*border:1px solid;*/
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div[class^="content-inner"]
+{
+	margin-right: auto;
+	margin-left: auto;
+	margin-top:15px;
+	margin-bottom:10px;
+	/*border: solid 1px;*/
+}
+
+.content-inner
+{
+	width:240px;
+	height:280px;
+}
+
+.content-inner-bg
+{
+	width: 210px;
+	height: 230px;
+}
+
+.content-inner-md
+{
+	width:180px;
+	height: 96px;
+}
+
+.content-outer
+{
+	width:280px;
+	height:400px;
+}
+
+.content-hg
+{
+	width:256px;
+	margin-top:20px;
+	margin-bottom: 25px;
+}
+
+.content-lg
+{	
+	height:100px;
+	margin-top:15px;
+}
+
+.alreadyCont
+{
+	width:160px;
+	height:90px;
+	/*border:1px solid;*/
+	margin-top:15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:15px;
+}
+
+.reg_link
+{
+	font-size:60%;
+	margin-top: 25px;
+	width:180px;
+	/*border:solid 1px;*/
+}
+
+
+/*	ボタン関連	*/
+.button_form, .button_form-md,
+.button_form-lg,.button_form-hg,
+.alreadyBtn_lg, .alreadyBtn_md,
+.alreadyBtn_sm
+{
+	height:30px;
+	/*border:1px solid;*/
+	text-align: center;
+	margin-top:10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button_form{ width:130px; }
+.button_form-hg{ width:240px; }
+.button_form-lg{ width:200px; }
+.button_form-md{ width:170px; }
+.alreadyBtn_lg{ width:152px; }
+.alreadyBtn_md{ width:98px; }
+.alreadyBtn_sm{ width:72px; }
+
+/*	セレクトボックス関連	*/
+.text-position1
+{
+	font-size: 13px;
+	margin-top: 15px;
+}
+
+.mail_work
+{
+	margin-left:24px;
+}
+span.textposition
+{
+	position: relative;
+	top:-1px;
+}
+
+.change_delBtn
+{
+	position: absolute;
+	margin-left:110px;
+	margin-top:-48px;
+	
+}

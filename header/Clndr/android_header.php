@@ -25,10 +25,10 @@
 ?>
 <table class="header">
 	<tr>
-		<td class="text-align-left head" style="width:5%;">
+		<td class="text-align-left head" style="width:10%;">
 			<a class="header" href="./schedule.php">個人</a>
 		</td>
-		<td class="text-align-left head" style="width:4%;">
+		<td class="text-align-left head" style="width:10%;">
 			<a class="header" href="./manage.php">全体</a>
 		</td>
 		<td class="text-align-right head">

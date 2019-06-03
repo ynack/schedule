@@ -30,6 +30,13 @@ table.header
 	top:0;
 }
 
+td.head
+{
+	border:solid 1px;
+	text-align: right;
+	vertical-align: top;
+}
+
 a:link{ color:#000; text-decoration: none;}
 a:visited{ color:#000; text-decoration: none;}
 a:hover{ color:#000; text-decoration: none;}
